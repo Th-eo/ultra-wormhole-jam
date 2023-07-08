@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://4rc3jy1qoxx0"]
+[gd_scene load_steps=8 format=3 uid="uid://4rc3jy1qoxx0"]
+
+[ext_resource type="Script" path="res://src/entities/player.gd" id="1_kvw8c"]
+[ext_resource type="Texture2D" uid="uid://dw7ki3t02x0jn" path="res://assets/characters/anabel.png" id="2_2lg34"]
+[ext_resource type="Script" path="res://src/entities/projectileorigin.gd" id="3_b5n8w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r3bss"]
+
+[sub_resource type="Animation" id="Animation_phaxw"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_rwx5p"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3de1p"]
+_data = {
+"idle": SubResource("Animation_phaxw"),
+"walk": SubResource("Animation_rwx5p")
+}
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_kvw8c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_r3bss")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2lg34")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ProjectileOrigin" type="Node2D" parent="."]
+script = ExtResource("3_b5n8w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3de1p")
+}

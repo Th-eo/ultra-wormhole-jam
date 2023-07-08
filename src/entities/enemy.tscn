@@ -1,3 +1,72 @@
-[gd_scene format=3 uid="uid://4e2841gfylxf"]
+[gd_scene load_steps=12 format=3 uid="uid://4e2841gfylxf"]
 
-[node name="Enemy" type="Area2D"]
+[ext_resource type="Script" path="res://src/entities/enemy.gd" id="1_3rway"]
+[ext_resource type="Texture2D" uid="uid://be2g6xsny5ubp" path="res://assets/characters/substitute.png" id="2_0vjb3"]
+[ext_resource type="Shader" path="res://src/shaders/chromaticaberration.gdshader" id="2_36hp7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k301x"]
+radius = 11.0
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tognh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdd5j"]
+shader = ExtResource("2_36hp7")
+shader_parameter/apply = true
+shader_parameter/amount = 0.0
+
+[sub_resource type="Animation" id="Animation_bbc7c"]
+resource_name = "attack"
+
+[sub_resource type="Animation" id="Animation_gex6w"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_gdd5j")]
+}
+
+[sub_resource type="Animation" id="Animation_x3xhq"]
+resource_name = "walk"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_cfdd5"]
+resource_name = "death"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_af8nc"]
+_data = {
+"attack": SubResource("Animation_bbc7c"),
+"death": SubResource("Animation_cfdd5"),
+"idle": SubResource("Animation_gex6w"),
+"walk": SubResource("Animation_x3xhq")
+}
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_3rway")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_k301x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_tognh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gdd5j")
+texture = ExtResource("2_0vjb3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_af8nc")
+}
