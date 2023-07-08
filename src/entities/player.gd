@@ -4,8 +4,14 @@ extends CharacterBody2D
 const SPEED = 300.0
 var can_move = true # Variable to lock player input?
 
+var fire_rate = 0.2
+@onready var fire_timer = $Timer
+var can_shoot = true
+
 func _ready():
 	$AnimationPlayer.play("idle") # TODO
+	fire_timer.one_shot = false
+	fire_timer.wait_time = fire_rate
 
 func _physics_process(delta):
 	if can_move == true: move()
@@ -18,10 +24,13 @@ func _physics_process(delta):
 		$AnimationPlayer.play("walk") # TODO
 	else:
 		$AnimationPlayer.play("idle")
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_pressed("fire") and can_shoot:
 		fire()
 		wiggle() # Scale wiggle, just for input feedback
 		# Also the word wiggle is fun
+		can_shoot = false
+		fire_timer.start()
+		
 
 func move():
 	var x_direction = Input.get_axis("left", "right")
@@ -43,6 +52,7 @@ func fire():
 	var instance = projectile.instantiate()
 	instance.transform = $ProjectileOrigin.transform
 	instance.global_position = $ProjectileOrigin.global_position
+	instance.target_position = get_global_mouse_position()
 	get_parent().add_child(instance)
 
 func wiggle():
@@ -52,3 +62,7 @@ func wiggle():
 	
 func _process(delta):
 	pass
+
+
+func _on_timer_timeout():
+	can_shoot = true

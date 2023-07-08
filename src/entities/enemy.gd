@@ -17,7 +17,6 @@ func _ready():
 	target = get_parent().get_node("Player")
 
 func _physics_process(delta):
-	print($AnimationPlayer.current_animation)
 	if target and move and cur_hp > 0:
 		velocity = global_position.direction_to(target.global_position)
 		move_and_collide(velocity * SPEED * delta)
@@ -48,6 +47,8 @@ func handle_hit():
 
 func die():
 	move = false
+	$Hurtbox.monitoring = false
+	$Hurtbox.monitorable = false
 	$AnimationPlayer.play("death")
 	await $AnimationPlayer.animation_finished
 	queue_free()

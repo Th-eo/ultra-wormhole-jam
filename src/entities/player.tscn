@@ -36,3 +36,7 @@ script = ExtResource("3_b5n8w")
 libraries = {
 "": SubResource("AnimationLibrary_3de1p")
 }
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

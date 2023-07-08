@@ -18,6 +18,10 @@ shader_parameter/amount = 0.0
 [sub_resource type="Animation" id="Animation_bbc7c"]
 resource_name = "attack"
 
+[sub_resource type="Animation" id="Animation_cfdd5"]
+resource_name = "death"
+length = 0.01
+
 [sub_resource type="Animation" id="Animation_gex6w"]
 resource_name = "idle"
 loop_mode = 1
@@ -38,9 +42,6 @@ tracks/0/keys = {
 resource_name = "walk"
 loop_mode = 1
 
-[sub_resource type="Animation" id="Animation_cfdd5"]
-resource_name = "death"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_af8nc"]
 _data = {
 "attack": SubResource("Animation_bbc7c"),
@@ -53,6 +54,7 @@ _data = {
 script = ExtResource("1_3rway")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 4)
