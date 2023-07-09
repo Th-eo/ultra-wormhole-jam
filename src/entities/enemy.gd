@@ -46,6 +46,7 @@ func handle_hit():
 		die()
 
 func die():
+	$Sprite2D.texture = "res://assets/particles/death_test.png"
 	move = false
 	$Hurtbox.monitoring = false
 	$Hurtbox.monitorable = false
