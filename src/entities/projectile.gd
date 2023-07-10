@@ -43,5 +43,5 @@ func die():
 
 func _on_area_entered(area):
 	if area.get_parent().has_method("handle_hit"):
-		area.get_parent().handle_hit()
+		area.get_parent().handle_hit(20)
 		die()

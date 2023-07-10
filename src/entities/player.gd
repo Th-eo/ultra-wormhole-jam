@@ -13,7 +13,7 @@ func _ready():
 	fire_timer.one_shot = false
 	fire_timer.wait_time = fire_rate
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if can_move == true: move()
 	move_and_slide()
 	if velocity.x < 0: # Flip based on direction
@@ -30,6 +30,8 @@ func _physics_process(delta):
 		# Also the word wiggle is fun
 		can_shoot = false
 		fire_timer.start()
+	if Input.is_action_pressed("special"):
+		special()
 		
 
 func move():
@@ -55,12 +57,17 @@ func fire():
 	instance.target_position = get_global_mouse_position()
 	get_parent().add_child(instance)
 
+func special(): # Kill all enemies
+	for i in get_parent().get_child_count():
+		if get_parent().get_child(i).is_in_group("enemy"):
+			get_parent().get_child(i).handle_hit(1000)
+
 func wiggle():
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property($Sprite2D, "scale", Vector2(1.2, 1.2), 0.05)
 	tween.tween_property($Sprite2D, "scale", Vector2(1, 1), 0.05)
 	
-func _process(delta):
+func _process(_delta):
 	pass
 
 

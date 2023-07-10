@@ -1,8 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://4e2841gfylxf"]
+[gd_scene load_steps=18 format=3 uid="uid://4e2841gfylxf"]
 
 [ext_resource type="Script" path="res://src/entities/enemy.gd" id="1_3rway"]
 [ext_resource type="Texture2D" uid="uid://be2g6xsny5ubp" path="res://assets/characters/substitute.png" id="2_0vjb3"]
 [ext_resource type="Shader" path="res://src/shaders/chromaticaberration.gdshader" id="2_36hp7"]
+[ext_resource type="Texture2D" uid="uid://deumu276desrf" path="res://assets/ui/health_under.png" id="4_514tn"]
+[ext_resource type="Texture2D" uid="uid://bu0ub4ammx75f" path="res://assets/ui/health_100.png" id="5_7tdfq"]
+[ext_resource type="Texture2D" uid="uid://da1q3hmynq7an" path="res://assets/ui/health_over.png" id="5_aevpx"]
+[ext_resource type="Script" path="res://src/entities/enemyhpbar.gd" id="6_xvxrc"]
+[ext_resource type="Texture2D" uid="uid://6jdw7jysmdv1" path="res://assets/ui/health_75.png" id="7_2e7p3"]
+[ext_resource type="Texture2D" uid="uid://stk1t8ojo0c0" path="res://assets/ui/health_30.png" id="8_byfnx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k301x"]
 radius = 11.0
@@ -72,3 +78,23 @@ texture = ExtResource("2_0vjb3")
 libraries = {
 "": SubResource("AnimationLibrary_af8nc")
 }
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 8.0
+offset_bottom = -11.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+texture_under = ExtResource("4_514tn")
+texture_over = ExtResource("5_aevpx")
+texture_progress = ExtResource("5_7tdfq")
+script = ExtResource("6_xvxrc")
+greenTexture = ExtResource("5_7tdfq")
+orangeTexture = ExtResource("7_2e7p3")
+redTexture = ExtResource("8_byfnx")

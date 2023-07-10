@@ -1,16 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnrvhfhuxy3hd"]
+[gd_scene load_steps=5 format=3 uid="uid://dnrvhfhuxy3hd"]
 
+[ext_resource type="FontFile" uid="uid://bs17l8t6k8fpa" path="res://assets/fonts/LanaPixel.ttf" id="1_b7uc1"]
 [ext_resource type="PackedScene" uid="uid://4rc3jy1qoxx0" path="res://src/entities/player.tscn" id="1_nyl0g"]
 [ext_resource type="PackedScene" uid="uid://4e2841gfylxf" path="res://src/entities/enemy.tscn" id="2_fb482"]
+[ext_resource type="Texture2D" uid="uid://caga75fkng2gn" path="res://assets/ui/health.png" id="2_pjep0"]
 
 [node name="Main" type="Node2D"]
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+offset_right = 320.0
+offset_bottom = 24.0
+color = Color(0.219608, 0.219608, 0.219608, 0.65098)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/ColorRect"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 320.0
+offset_bottom = 32.0
+theme_override_fonts/normal_font = ExtResource("1_b7uc1")
+theme_override_font_sizes/normal_font_size = 11
+text = "100 / 100"
+
+[node name="TextureRect" type="TextureRect" parent="UI/ColorRect"]
+layout_mode = 0
+offset_right = 23.0
+offset_bottom = 24.0
+texture = ExtResource("2_pjep0")
 
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
 
 [node name="Player" parent="." instance=ExtResource("1_nyl0g")]
 
-[node name="Enemy" parent="." instance=ExtResource("2_fb482")]
-position = Vector2(137, -19)
+[node name="Enemy" parent="." groups=["enemy"] instance=ExtResource("2_fb482")]
+position = Vector2(143, -18)
+scale = Vector2(0.5, 0.5)
