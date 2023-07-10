@@ -37,8 +37,6 @@ func _physics_process(_delta):
 func move():
 	var direction = Vector2(Input.get_axis("left", "right"),Input.get_axis("up", "down"))
 	direction = direction.normalized()
-	var x_direction = Input.get_axis("left", "right")
-	var y_direction = Input.get_axis("up", "down")
 	if direction.x:
 		velocity.x = direction.x * SPEED
 	else:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnrvhfhuxy3hd"]
+[gd_scene load_steps=6 format=3 uid="uid://dnrvhfhuxy3hd"]
 
 [ext_resource type="FontFile" uid="uid://bs17l8t6k8fpa" path="res://assets/fonts/LanaPixel.ttf" id="1_b7uc1"]
 [ext_resource type="PackedScene" uid="uid://4rc3jy1qoxx0" path="res://src/entities/player.tscn" id="1_nyl0g"]
 [ext_resource type="PackedScene" uid="uid://4e2841gfylxf" path="res://src/entities/enemy.tscn" id="2_fb482"]
 [ext_resource type="Texture2D" uid="uid://caga75fkng2gn" path="res://assets/ui/health.png" id="2_pjep0"]
+[ext_resource type="PackedScene" uid="uid://i31n8g26w18g" path="res://src/entities/Squrtile.tscn" id="5_lqnwq"]
 
 [node name="Main" type="Node2D"]
 
@@ -38,3 +39,6 @@ format = 2
 [node name="Enemy" parent="." instance=ExtResource("2_fb482")]
 position = Vector2(143, -18)
 scale = Vector2(0.5, 0.5)
+
+[node name="Enemy2" parent="." instance=ExtResource("5_lqnwq")]
+scale = Vector2(0.996008, 0.968083)

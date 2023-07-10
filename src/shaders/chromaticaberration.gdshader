@@ -13,8 +13,8 @@ void fragment() {
 	
 	if (apply == true) {
 		float adjusted_amount = amount * texture(offset_texture, UV).r / 100.0;
-		color.r = texture(TEXTURE, vec2(UV.x + adjusted_amount, UV.y)).r;
-		color.g = texture(TEXTURE, UV).g;
+		color.r = texture(TEXTURE, UV).r;
+		 color.g = texture(TEXTURE, vec2(UV.x - adjusted_amount, UV.y)).g;
 		color.b = texture(TEXTURE, vec2(UV.x - adjusted_amount, UV.y)).b;
 		COLOR = vec4(color.rgb, COLOR.a);
 	}
