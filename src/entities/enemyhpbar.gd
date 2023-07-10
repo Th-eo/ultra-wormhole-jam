@@ -10,7 +10,6 @@ func _ready():
 func setProgress(progress):
 	visible = true
 	var progressRatio = progress / 100.0
-	
 	if progressRatio >= 0.31:
 		set_progress_texture(orangeTexture)
 	elif progressRatio <= 0.3:
@@ -19,5 +18,4 @@ func setProgress(progress):
 		set_progress_texture(greenTexture)
 	else:
 		set_progress_texture(redTexture)
-	
 	set_value(progressRatio * max_value)

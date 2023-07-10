@@ -37,3 +37,4 @@ format = 2
 
 [node name="Enemy" parent="." instance=ExtResource("2_fb482")]
 position = Vector2(143, -18)
+scale = Vector2(0.5, 0.5)

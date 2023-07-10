@@ -101,7 +101,7 @@ func shoot():
 	get_parent().add_child(instance)
 
 func update_hp():
-	var progress = cur_hp / max_hp * 100
+	var progress = float(cur_hp) / max_hp * 100
 	$TextureProgressBar.setProgress(progress)
 
 # Files should be preloaded so there's no minilag

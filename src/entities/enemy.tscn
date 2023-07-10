@@ -57,7 +57,6 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_3rway")
 
 [node name="Hurtbox" type="Area2D" parent="."]
