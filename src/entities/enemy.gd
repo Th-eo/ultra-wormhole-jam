@@ -12,16 +12,35 @@ var death_particles = preload("res://src/entities/deathanimparticles.tscn")
 @export var speed: int = 150
 
 var move = true
+var knockback = false
+var knockback_strength = 100.0
+var knockback_duration = 0.5
+var knockback_timer = 0.0
+var knockback_direction = Vector2.ZERO
 
 func _ready():
 	# Find Player in parent ("World/Main" node)
 	target = get_parent().get_node("Player")
 	$TextureProgressBar.visible = false
 
+func set_knockback(do, strength, duration, direction):
+	knockback = do
+	knockback_strength = strength
+	knockback_duration = duration
+	knockback_direction = direction
+
 func _physics_process(delta):
 	if target and move and cur_hp > 0:
-		velocity = global_position.direction_to(target.global_position)
-		move_and_collide(velocity * SPEED * delta)
+		if knockback:
+		# Apply knockback force
+			move_and_collide(knockback_direction * knockback_strength * delta)
+			knockback_timer += delta
+			if knockback_timer >= knockback_duration:
+				knockback = false
+				knockback_timer = 0.0
+		else:
+			velocity = global_position.direction_to(target.global_position)
+			move_and_collide(velocity * SPEED * delta)
 	if velocity.x < 0: # Flip based on direction
 		$Sprite2D.flip_h = false
 	if velocity.x > 0:
@@ -74,5 +93,5 @@ func die():
 	queue_free()
 	var death = death_particles.instantiate()
 	death.set_scale(scale)
-	death.global_position = global_position
+	death.global_position = global_position+Vector2(0,2)
 	get_parent().add_child(death)

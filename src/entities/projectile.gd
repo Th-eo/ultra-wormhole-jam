@@ -43,5 +43,8 @@ func die():
 
 func _on_area_entered(area):
 	if area.get_parent().has_method("handle_hit"):
-		area.get_parent().handle_hit(20)
+		var enemy = area.get_parent()
+		enemy.handle_hit(20)
+		var direction = enemy.global_position - get_parent().get_node("Player").global_position
+		enemy.set_knockback(true, 100, .15, direction.normalized())
 		die()

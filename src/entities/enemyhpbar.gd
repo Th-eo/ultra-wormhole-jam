@@ -4,8 +4,8 @@ extends TextureProgressBar
 @export var orangeTexture: Texture
 @export var redTexture: Texture
 
-func _ready():
-	set_progress_texture(greenTexture)  # Set the initial texture
+#func _ready():
+#	set_progress_texture(greenTexture)  # Set the initial texture
 
 func setProgress(progress):
 	visible = true
@@ -18,4 +18,3 @@ func setProgress(progress):
 	else:  # If this somehow fails, use red texture
 		set_progress_texture(redTexture)
 	set_value((progress / 100) * max_value)
-	print(value)
