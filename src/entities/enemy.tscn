@@ -98,3 +98,11 @@ script = ExtResource("6_xvxrc")
 greenTexture = ExtResource("5_7tdfq")
 orangeTexture = ExtResource("7_2e7p3")
 redTexture = ExtResource("8_byfnx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -49.0
+offset_top = 16.0
+offset_right = 53.0
+offset_bottom = 42.0
+text = "state"
+horizontal_alignment = 1

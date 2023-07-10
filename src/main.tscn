@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://4rc3jy1qoxx0" path="res://src/entities/player.tscn" id="1_nyl0g"]
 [ext_resource type="PackedScene" uid="uid://4e2841gfylxf" path="res://src/entities/enemy.tscn" id="2_fb482"]
 [ext_resource type="Texture2D" uid="uid://caga75fkng2gn" path="res://assets/ui/health.png" id="2_pjep0"]
-[ext_resource type="PackedScene" uid="uid://i31n8g26w18g" path="res://src/entities/Squrtile.tscn" id="5_lqnwq"]
+[ext_resource type="PackedScene" uid="uid://bfelnnx1d1u66" path="res://assets/ui/partybutton.tscn" id="3_av7u8"]
 
 [node name="Main" type="Node2D"]
 
@@ -31,14 +31,43 @@ offset_right = 23.0
 offset_bottom = 24.0
 texture = ExtResource("2_pjep0")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+custom_minimum_size = Vector2(24, 24)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Button" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+layout_mode = 2
+
+[node name="Button2" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+layout_mode = 2
+
+[node name="Button3" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+layout_mode = 2
+
+[node name="Button4" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+layout_mode = 2
+
+[node name="Button5" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+layout_mode = 2
+
+[node name="Button6" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+layout_mode = 2
+
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
 
 [node name="Player" parent="." instance=ExtResource("1_nyl0g")]
+position = Vector2(160, 90)
 
 [node name="Enemy" parent="." instance=ExtResource("2_fb482")]
-position = Vector2(143, -18)
+position = Vector2(275, 70)
 scale = Vector2(0.5, 0.5)
-
-[node name="Enemy2" parent="." instance=ExtResource("5_lqnwq")]
-scale = Vector2(0.996008, 0.968083)
