@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnrvhfhuxy3hd"]
+[gd_scene load_steps=7 format=3 uid="uid://dnrvhfhuxy3hd"]
 
+[ext_resource type="Script" path="res://src/ingameUI.gd" id="1_1w7ln"]
 [ext_resource type="FontFile" uid="uid://bs17l8t6k8fpa" path="res://assets/fonts/LanaPixel.ttf" id="1_b7uc1"]
 [ext_resource type="PackedScene" uid="uid://4rc3jy1qoxx0" path="res://src/entities/player.tscn" id="1_nyl0g"]
 [ext_resource type="PackedScene" uid="uid://4e2841gfylxf" path="res://src/entities/enemy.tscn" id="2_fb482"]
@@ -10,12 +11,22 @@
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
-offset_right = 320.0
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1w7ln")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+layout_mode = 0
+offset_right = 640.0
 offset_bottom = 24.0
 color = Color(0.219608, 0.219608, 0.219608, 0.65098)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/ColorRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/ColorRect"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 8.0
@@ -25,41 +36,45 @@ theme_override_fonts/normal_font = ExtResource("1_b7uc1")
 theme_override_font_sizes/normal_font_size = 11
 text = "100 / 100"
 
-[node name="TextureRect" type="TextureRect" parent="UI/ColorRect"]
+[node name="TextureRect" type="TextureRect" parent="UI/Control/ColorRect"]
 layout_mode = 0
 offset_right = 23.0
 offset_bottom = 24.0
 texture = ExtResource("2_pjep0")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+[node name="Buttons" type="HBoxContainer" parent="UI/Control"]
 custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -32.0
+offset_left = 160.0
+offset_top = -60.0
+offset_right = -172.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 alignment = 1
 
-[node name="Button" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+[node name="1" parent="UI/Control/Buttons" instance=ExtResource("3_av7u8")]
 layout_mode = 2
 
-[node name="Button2" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+[node name="2" parent="UI/Control/Buttons" instance=ExtResource("3_av7u8")]
 layout_mode = 2
 
-[node name="Button3" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+[node name="3" parent="UI/Control/Buttons" instance=ExtResource("3_av7u8")]
 layout_mode = 2
 
-[node name="Button4" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+[node name="4" parent="UI/Control/Buttons" instance=ExtResource("3_av7u8")]
 layout_mode = 2
 
-[node name="Button5" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+[node name="5" parent="UI/Control/Buttons" instance=ExtResource("3_av7u8")]
 layout_mode = 2
 
-[node name="Button6" parent="UI/HBoxContainer" instance=ExtResource("3_av7u8")]
+[node name="6" parent="UI/Control/Buttons" instance=ExtResource("3_av7u8")]
 layout_mode = 2
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -70,4 +85,3 @@ position = Vector2(160, 90)
 
 [node name="Enemy" parent="." instance=ExtResource("2_fb482")]
 position = Vector2(275, 70)
-scale = Vector2(0.5, 0.5)

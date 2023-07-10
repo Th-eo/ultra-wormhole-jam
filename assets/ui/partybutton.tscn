@@ -1,18 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfelnnx1d1u66"]
+[gd_scene load_steps=3 format=3 uid="uid://bfelnnx1d1u66"]
 
-[ext_resource type="Texture2D" uid="uid://d01x08mxwtf1c" path="res://assets/characters/Gengar.png" id="1_1cg4e"]
+[ext_resource type="Script" path="res://assets/ui/partybutton.gd" id="1_f3hv8"]
+[ext_resource type="Texture2D" uid="uid://d3gxr2exe1v60" path="res://assets/characters/Bulbasaur.png" id="2_a2pkh"]
 
-[node name="Button" type="Button"]
-custom_minimum_size = Vector2(24, 24)
+[node name="#" type="Button"]
+custom_minimum_size = Vector2(48, 48)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_f3hv8")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Sprite" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_1cg4e")
-expand_mode = 1
+mouse_filter = 2
+texture = ExtResource("2_a2pkh")
+stretch_mode = 3
+
+[node name="Number" type="RichTextLabel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+bbcode_enabled = true
+text = "[center]#[/center]"
