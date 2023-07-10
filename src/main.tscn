@@ -35,6 +35,6 @@ format = 2
 
 [node name="Player" parent="." instance=ExtResource("1_nyl0g")]
 
-[node name="Enemy" parent="." groups=["enemy"] instance=ExtResource("2_fb482")]
+[node name="Enemy" parent="." instance=ExtResource("2_fb482")]
 position = Vector2(143, -18)
 scale = Vector2(0.5, 0.5)

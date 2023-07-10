@@ -4,17 +4,20 @@ extends TextureProgressBar
 @export var orangeTexture: Texture
 @export var redTexture: Texture
 
-#func _ready():
-#	set_progress_texture(greenTexture)  # Set the initial texture
+func _ready():
+	set_progress_texture(greenTexture)  # Set the initial texture
 
 func setProgress(progress):
 	visible = true
-	if progress / 100 >= 0.31:  # Swap to orange texture when progress is 31% or higher
+	var progressRatio = progress / 100.0
+	
+	if progressRatio >= 0.31:
 		set_progress_texture(orangeTexture)
-	elif progress / 100 <= 0.3:  # Swap to red texture when progress is 30% or lower
+	elif progressRatio <= 0.3:
 		set_progress_texture(redTexture)
-	elif progress / 100 >= 1:
+	elif progressRatio >= 1.0:
 		set_progress_texture(greenTexture)
-	else:  # If this somehow fails, use red texture
+	else:
 		set_progress_texture(redTexture)
-	set_value((progress / 100) * max_value)
+	
+	set_value(progressRatio * max_value)

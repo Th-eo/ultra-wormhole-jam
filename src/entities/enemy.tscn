@@ -56,7 +56,8 @@ _data = {
 "walk": SubResource("Animation_x3xhq")
 }
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_3rway")
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -90,7 +91,6 @@ offset_bottom = -11.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-value = 100.0
 texture_under = ExtResource("4_514tn")
 texture_over = ExtResource("5_aevpx")
 texture_progress = ExtResource("5_7tdfq")

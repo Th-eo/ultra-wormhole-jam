@@ -55,6 +55,7 @@ func fire():
 	instance.transform = $ProjectileOrigin.transform
 	instance.global_position = $ProjectileOrigin.global_position
 	instance.target_position = get_global_mouse_position()
+	instance.projectile_owner = self
 	get_parent().add_child(instance)
 
 func special(): # Kill all enemies
