@@ -35,16 +35,19 @@ func _physics_process(_delta):
 		
 
 func move():
+	var direction = Vector2(Input.get_axis("left", "right"),Input.get_axis("up", "down"))
+	direction = direction.normalized()
 	var x_direction = Input.get_axis("left", "right")
 	var y_direction = Input.get_axis("up", "down")
-	if x_direction:
-		velocity.x = x_direction * SPEED
+	if direction.x:
+		velocity.x = direction.x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	if y_direction:
-		velocity.y = y_direction * SPEED
+	if direction.y:
+		velocity.y = direction.y * SPEED
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
+
 
 func fire():
 	var projectile = preload("res://src/entities/bubble.tscn")
