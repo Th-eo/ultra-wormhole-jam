@@ -1,8 +1,9 @@
 extends Control
 
+
 @onready var buttons: Array = [$Buttons.get_node("1"),$Buttons.get_node("2"),$Buttons.get_node("3"),
 	$Buttons.get_node("4"),$Buttons.get_node("5"),$Buttons.get_node("6")]
-
+ 
 func _ready():
 	# Starts at 0 tho, cause it's an array
 	buttons[0].get_node("Sprite").set_texture(load("res://assets/characters/Dugtrio.png"))
@@ -11,7 +12,12 @@ func _ready():
 	buttons[3].get_node("Sprite").set_texture(load("res://assets/characters/Skarmory.png"))
 	buttons[4].get_node("Sprite").set_texture(load("res://assets/characters/Gengar.png"))
 	buttons[5].get_node("Sprite").set_texture(load("res://assets/characters/Squirtle.png"))
+	
+	var hp_emitter = get_node("Player")	
+	hp_emitter.hp_signal.connect(update_hp)
 
+func update_hp:
+	
 func _unhandled_input(event):
 	if Input.is_action_pressed("party1"):
 		buttons[0].grab_focus()

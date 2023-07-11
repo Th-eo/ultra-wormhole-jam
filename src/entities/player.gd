@@ -1,12 +1,18 @@
 class_name Player
 extends CharacterBody2D
 
+#Stats
+var max_hp = 100
+var cur_hp = max_hp
+var defense = 1.0
 const SPEED = 300.0
 var can_move = true # Variable to lock player input?
 
 var fire_rate = 0.2
 @onready var fire_timer = $Timer
 var can_shoot = true
+
+signal hp_signal
 
 func _ready():
 	$AnimationPlayer.play("idle") # TODO
@@ -58,6 +64,25 @@ func fire():
 	instance.target_position = get_global_mouse_position()
 	instance.projectile_owner = self
 	get_parent().add_child(instance)
+	
+func handle_hit(damage):
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
+	var tween2 = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
+	if cur_hp > 0:
+		tween.tween_property($Sprite2D.get_material(), "shader_parameter/amount", 20, .06)
+		tween.tween_property($Sprite2D.get_material(), "shader_parameter/amount", 0, .2)
+		var shake = 1.5
+		var shake_duration = 0.05
+		var shake_count = 3
+		for i in shake_count:
+			tween2.tween_property($Sprite2D, "position", Vector2(randf_range(-shake, shake), randf_range(-shake, shake)), shake_duration)
+			tween2.tween_property($Sprite2D, "position", Vector2(0,0), .01)
+		cur_hp -= damage # Replace with real damage formula
+	emit_signal("hp_signal")
+	if cur_hp <= 0:
+		tween.stop()
+		tween2.stop()
+		die()
 
 func special(): # Kill all enemies
 	for i in get_parent().get_child_count():
@@ -75,3 +100,6 @@ func _process(_delta):
 
 func _on_timer_timeout():
 	can_shoot = true
+	
+func die():
+	pass
