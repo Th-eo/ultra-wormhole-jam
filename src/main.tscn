@@ -110,4 +110,6 @@ layer_0/tile_data = PackedInt32Array(-131077, 0, 0, -131076, 0, 0, -131075, 0, 0
 position = Vector2(160, 90)
 
 [node name="Enemy" parent="." instance=ExtResource("2_fb482")]
-position = Vector2(275, 70)
+position = Vector2(428, -32)
+
+[connection signal="hp_signal" from="Player" to="UI/Control" method="_on_player_hp_signal"]

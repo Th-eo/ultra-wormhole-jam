@@ -2,11 +2,19 @@ class_name Player
 extends CharacterBody2D
 
 #Stats
-var max_hp = 100
-var cur_hp = max_hp
+@export var max_hp = 100
+@export var cur_hp = max_hp
 var defense = 1.0
 const SPEED = 300.0
 var can_move = true # Variable to lock player input?
+
+# Knockback variables
+var knockback = false
+var knockback_strength = 100.0
+var knockback_duration = 0.5
+var knockback_timer = 0.0
+var knockback_direction = Vector2.ZERO
+@export var knockback_resistance = 1.0
 
 var fire_rate = 0.2
 @onready var fire_timer = $Timer
@@ -84,6 +92,12 @@ func handle_hit(damage):
 		tween2.stop()
 		die()
 
+func set_knockback(do, strength, duration, direction):
+	knockback = do
+	knockback_strength = strength
+	knockback_duration = duration
+	knockback_direction = direction
+	
 func special(): # Kill all enemies
 	for i in get_parent().get_child_count():
 		if get_parent().get_child(i).is_in_group("enemy"):

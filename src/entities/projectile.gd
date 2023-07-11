@@ -43,8 +43,7 @@ func die():
 	queue_free()
 
 func _on_area_entered(area):
-	if area.get_parent().has_method("handle_hit") and area.get_parent().get_groups() != projectile_owner.get_groups():
-		print("true")
+	if area.get_parent().has_method("handle_hit") and area.get_parent().get_groups() != projectile_owner.get_groups():	
 		var enemy = area.get_parent()
 		enemy.handle_hit(20)
 		var direction = enemy.global_position - get_parent().get_node("Player").global_position

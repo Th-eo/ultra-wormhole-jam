@@ -12,11 +12,7 @@ func _ready():
 	buttons[3].get_node("Sprite").set_texture(load("res://assets/characters/Skarmory.png"))
 	buttons[4].get_node("Sprite").set_texture(load("res://assets/characters/Gengar.png"))
 	buttons[5].get_node("Sprite").set_texture(load("res://assets/characters/Squirtle.png"))
-	
-	var hp_emitter = get_node("Player")	
-	hp_emitter.hp_signal.connect(update_hp)
-
-func update_hp:
+	$ColorRect/RichTextLabel.text = str($"../../Player".cur_hp)
 	
 func _unhandled_input(event):
 	if Input.is_action_pressed("party1"):
@@ -37,3 +33,7 @@ func _unhandled_input(event):
 	if Input.is_action_pressed("party6"):
 		buttons[5].grab_focus()
 		buttons[5].set_pressed(true)
+
+
+func _on_player_hp_signal():
+	$ColorRect/RichTextLabel.text = str($"../../Player".cur_hp)
