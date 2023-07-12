@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://4rc3jy1qoxx0"]
+[gd_scene load_steps=9 format=3 uid="uid://4rc3jy1qoxx0"]
 
 [ext_resource type="Script" path="res://src/entities/player.gd" id="1_kvw8c"]
 [ext_resource type="Texture2D" uid="uid://dw7ki3t02x0jn" path="res://assets/characters/anabel.png" id="2_2lg34"]
 [ext_resource type="Script" path="res://src/entities/projectileorigin.gd" id="3_b5n8w"]
+[ext_resource type="PackedScene" uid="uid://da2v06nf4ngel" path="res://src/entities/beam.tscn" id="4_jxdxs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r3bss"]
 
@@ -43,5 +44,8 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_r3bss")
+
+[node name="Beam" parent="." instance=ExtResource("4_jxdxs")]
+enabled = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://da2v06nf4ngel"]
+
+[ext_resource type="Script" path="res://src/entities/beam.gd" id="1_85ftn"]
+[ext_resource type="Texture2D" uid="uid://dxuhulasksu6t" path="res://assets/particles/beam_start.png" id="2_bvkxs"]
+[ext_resource type="Texture2D" uid="uid://fspff6b5jwow" path="res://assets/particles/beam_loop.png" id="3_tdbch"]
+[ext_resource type="Texture2D" uid="uid://bmajr55rd2le7" path="res://assets/particles/beam_end.png" id="4_pklh8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gyw3i"]
+
+[node name="Beam" type="RayCast2D"]
+z_index = 1
+enabled = false
+target_position = Vector2(200, 0)
+script = ExtResource("1_85ftn")
+
+[node name="Begin" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+texture = ExtResource("2_bvkxs")
+
+[node name="Middle" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_gyw3i")
+position = Vector2(21, 0)
+texture = ExtResource("3_tdbch")
+region_enabled = true
+
+[node name="End" type="Sprite2D" parent="."]
+position = Vector2(40, 0)
+texture = ExtResource("4_pklh8")

@@ -60,7 +60,6 @@ func move():
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
-
 func fire():
 	var projectile = preload("res://src/entities/bubble.tscn")
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
